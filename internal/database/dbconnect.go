@@ -2,10 +2,12 @@ package database
 
 import (
 	"blog-api/internal/model"
+	"fmt"
 	stdlog "log"
 	"os"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/rs/zerolog/log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -13,7 +15,16 @@ import (
 )
 
 func ConnectToDatabase() (*gorm.DB, error) {
-	dsn := "host=ep-twilight-leaf-a4sw3hym.us-east-1.aws.neon.tech user=neondb_owner password=npg_FYHLDX4Qf3ns dbname=neondb port=5432 sslmode=require TimeZone=Asia/Shanghai"
+	err := godotenv.Load()
+	if err != nil {
+		log.Warn().Msg(".env file not found, falling back to system environment variables")
+	}
+
+	dsn := os.Getenv("DATABASE_DSN")
+	if dsn == "" {
+		log.Error().Msg("DATABASE_DSN environment variable not set")
+		return nil, fmt.Errorf("missing DATABASE_DSN")
+	}
 
 	gormLogger := logger.New(
 		stdlog.New(os.Stdout, "\r\n", stdlog.LstdFlags),
