@@ -1,0 +1,99 @@
+//CREATE POST REQUEST
+
+URL : http://localhost:3000/api/blog-post/createPost
+
+REQUEST:
+{
+  "title": "Understanding Go Concurrency",
+  "description": "A beginner's guide to concurrency patterns in Go.",
+  "body": "Concurrency in Go is handled using goroutines and channels. This post explains how to use these features effectively to write performant Go programs."
+}
+
+RESPONSE:{
+    "id": 7,
+    "message": "Blog post created successfully"
+}
+------------------------------------------------------------------------------------------------------------
+// GET ALL POSTS REQUEST
+
+URL : http://localhost:3000/api/blog-post/getAllPosts
+
+RESPONSE :[
+    {
+        "id": 2,
+        "title": "Exploring the Wonders of Go Programming",
+        "description": "A brief introduction to the Go programming language and its powerful features.",
+        "body": "Go, also known as Golang, is an open-source programming language developed by Google. It is designed to be simple, efficient, and highly performant, making it ideal for modern software development. In this post, we'll explore Go's key features such as concurrency support with goroutines, strong typing, and a powerful standard library that makes building scalable applications easier than ever.",
+        "created_at": "2025-05-19T11:25:35.842867+05:30",
+        "updated_at": "2025-05-19T11:25:35.842867+05:30"
+    },
+    {
+        "id": 3,
+        "title": "How to Build a REST API in Go",
+        "description": "Learn to build a RESTful API using Golang, Fiber, and GORM.",
+        "body": "In this blog post, we will walk through the process of creating a robust REST API in Go using Fiber framework, PostgreSQL, and GORM ORM...",
+        "created_at": "2025-05-19T11:29:07.471207+05:30",
+        "updated_at": "2025-05-19T12:09:04.063062+05:30"
+    },
+    {
+        "id": 5,
+        "title": "Understanding Go Concurrency",
+        "description": "A beginner's guide to concurrency patterns in Go.",
+        "body": "Concurrency in Go is handled using goroutines and channels. This post explains how to use these features effectively to write performant Go programs.",
+        "created_at": "2025-05-19T12:19:34.297102+05:30",
+        "updated_at": "2025-05-19T12:19:34.297102+05:30"
+    },
+    {
+        "id": 6,
+        "title": "Getting Started with Docker",
+        "description": "An introduction to containerization using Docker.",
+        "body": "Learn how Docker simplifies software deployment by packaging applications with their dependencies in containers.",
+        "created_at": "2025-05-19T14:34:51.919149+05:30",
+        "updated_at": "2025-05-19T14:38:03.476686+05:30"
+    },
+    {
+        "id": 7,
+        "title": "Understanding Go Concurrency",
+        "description": "A beginner's guide to concurrency patterns in Go.",
+        "body": "Concurrency in Go is handled using goroutines and channels. This post explains how to use these features effectively to write performant Go programs.",
+        "created_at": "2025-05-21T14:34:35.372278+05:30",
+        "updated_at": "2025-05-21T14:34:35.372278+05:30"
+    }
+]
+-------------------------------------------------------------------------------------------------------------------
+// GET POST BY ID REQUEST
+
+URL : http://localhost:3000/api/blog-post/2
+
+RESPONSE : {
+    "id": 2,
+    "title": "Exploring the Wonders of Go Programming",
+    "description": "A brief introduction to the Go programming language and its powerful features.",
+    "body": "Go, also known as Golang, is an open-source programming language developed by Google. It is designed to be simple, efficient, and highly performant, making it ideal for modern software development. In this post, we'll explore Go's key features such as concurrency support with goroutines, strong typing, and a powerful standard library that makes building scalable applications easier than ever.",
+    "created_at": "2025-05-19T11:25:35.842867+05:30",
+    "updated_at": "2025-05-19T11:25:35.842867+05:30"
+}
+-------------------------------------------------------------------------------------------------------------------
+//UPDATE POST BY ID REQUEST
+
+URL : http://localhost:3000/api/blog-post/3
+
+REQUEST : {
+  "title": "How to Build a REST API in Go",
+  "description": "Learn to build a RESTful API using Golang, Fiber, and GORM.",
+  "body": "In this blog post, we will walk through the process of creating a robust REST API in Go using Fiber framework, PostgreSQL, and GORM ORM..."
+}
+
+RESPONSE : {
+    "id": 3,
+    "message": "Post updated successfully"
+}
+--------------------------------------------------------------------------------------------------------------------------------------------
+//DELETE POST BY ID
+
+URL: http://localhost:3000/api/blog-post/3
+
+RESPONSE: {
+    "id": 3,
+    "message": "Post deleted successfully"
+}

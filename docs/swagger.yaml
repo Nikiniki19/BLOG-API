@@ -1,0 +1,167 @@
+basePath: /api/blog-post
+definitions:
+  model.BlogPost:
+    properties:
+      body:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model.BlogPostResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.BlogPost'
+        type: array
+      message:
+        type: string
+    type: object
+  model.ErrorResponse:
+    properties:
+      error:
+        type: string
+      message:
+        type: string
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: This is a sample blog post CRUD API built with Go Fiber
+  title: Blog Post API
+  version: "1.0"
+paths:
+ /{id}:
+    delete:
+      description: Remove a blog post using its ID
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.BlogPostResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+      summary: Delete a blog post by ID
+      tags:
+      - Blog
+    get:
+      description: Retrieve a single blog post by its ID
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.BlogPostResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+      summary: Get a blog post by ID
+      tags:
+      - Blog
+    patch:
+      consumes:
+      - application/json
+      description: Update a specific blog post's details
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated blog post
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/model.BlogPost'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.BlogPostResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+      summary: Update a blog post by ID
+      tags:
+      - Blog
+    /createPost:
+    post:
+      consumes:
+      - application/json
+      description: Add a new post to the blog
+      parameters:
+      - description: Blog post data
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/model.BlogPost'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.BlogPostResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+      summary: Create a new blog post
+      tags:
+      - Blog
+    /getAllPosts:
+    get:
+      description: Retrieve all blog posts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.BlogPostResponse'
+      summary: Get all blog posts
+      tags:
+      - Blog
+swagger: "2.0"
